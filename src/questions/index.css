@@ -1,0 +1,12 @@
+/* form .sd-container-modern{
+  width: 100%;
+} */
+
+.sv-header__title .sv-string-viewer{
+    font-size: 32px;
+  
+  @media (max-width: 600px) {
+      font-size: 18px;
+
+    }
+}
