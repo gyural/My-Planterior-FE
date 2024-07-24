@@ -14,7 +14,7 @@ const SurveyPage = () => {
   return (
     <div className='relative'>
       <div
-        className={`h-[${bannerHeight}] bg-cover bg-center`}
+        className={`h-[400px] bg-cover bg-center`}
         style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/asset/survey_background.png)` }}
       >
         <div className="pt-[340px] flex justify-center items-center">
