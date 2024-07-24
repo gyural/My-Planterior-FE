@@ -53,11 +53,32 @@ export const json = {
     {
       "elements": [
         {
-          "type": "text",
-          "name": "공간 크기",
-          "title": "2-2. 원하는 공간에 맞는 크기를 설정해주세요"
-        }
-      ]
+          "type": "imagepicker",
+          "name": "animals",
+          "title": "Which animals would you like to see in real life?",
+          "description": "Please select all that apply.",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "10~30cm",
+              "imageLink": `${process.env.PUBLIC_URL}/asset/questions_plant_size/10-30.png`,
+              "text": "10~30cm"
+            },
+            {
+              "value": "40~60cm",
+              "imageLink": `${process.env.PUBLIC_URL}/asset/questions_plant_size/40-60.png`,
+              "text": "40~60cm"
+            },
+            {
+              "value": "70~90cm",
+              "imageLink": `${process.env.PUBLIC_URL}/asset/questions_plant_size/70-90.png`,
+              "text": "70~90cm"
+            },
+            
+          ],
+          "showLabel": true,
+          "multiSelect": true
+        }]
     },
     {
       "elements": [
