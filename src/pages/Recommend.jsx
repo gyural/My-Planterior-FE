@@ -19,7 +19,7 @@ const RecommendPage = () => {
     <div className="w-full flex flex-col items-center px-4 py-4">
       <div className="bg-neutral-100 w-full max-w-3xl pt-10 px-4 rounded-lg shadow-md ">
         <h2 className="text-lg text-gray-900 mb-10">
-          <strong className="underline">규성님</strong>을 위한 맞춤형 식물들을 소개할게요!
+          <strong className="underline text-xl">규성님</strong>을 위한 맞춤형 식물들을 소개할게요!
         </h2>
         {recommandData.length > 0 ? (
           recommandData.map((plant, index) => (

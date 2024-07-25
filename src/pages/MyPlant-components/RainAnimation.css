@@ -1,0 +1,9 @@
+@keyframes fall {
+  to {
+    transform: translateY(100vh);
+  }
+}
+
+.animate-fall {
+  animation: fall linear infinite;
+}
