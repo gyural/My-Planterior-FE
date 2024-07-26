@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/My-Planterior-FE/static/css/main.0bafca66.css",
+    "main.js": "/My-Planterior-FE/static/js/main.a211d3a5.js",
+    "static/js/453.988822dd.chunk.js": "/My-Planterior-FE/static/js/453.988822dd.chunk.js",
+    "index.html": "/My-Planterior-FE/index.html",
+    "main.0bafca66.css.map": "/My-Planterior-FE/static/css/main.0bafca66.css.map",
+    "main.a211d3a5.js.map": "/My-Planterior-FE/static/js/main.a211d3a5.js.map",
+    "453.988822dd.chunk.js.map": "/My-Planterior-FE/static/js/453.988822dd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0bafca66.css",
+    "static/js/main.a211d3a5.js"
+  ]
+}
