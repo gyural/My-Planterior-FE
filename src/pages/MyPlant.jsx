@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Button from 'react-bootstrap/Button';
 import ConfirmModal from './MyPlant-components/ConfirmModal';
 import DifficultyModal from './MyPlant-components/DifficultyModal';
 import PlantImageModal from './MyPlant-components/PlantImageModal';
@@ -67,7 +66,7 @@ const MyPlant = () => {
         }}
         plants={plantImg}
       />
-      {plantType && <PlantGrowing></PlantGrowing>}
+      {plantType && <PlantGrowing onComplete={handleCompleteShow}></PlantGrowing>}
     </div>
   );
 }

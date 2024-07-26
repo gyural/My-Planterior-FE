@@ -3,7 +3,7 @@ import ReactModal from 'react-modal';
 import { Button } from 'react-bootstrap';
 
 const WaterEventModal = ({ isOpen, onRequestClose, onSelectWateringFrequency }) => {
-  const [selectedFrequency, setSelectedFrequency] = useState('');
+  const [selectedFrequency, setSelectedFrequency] = useState(null);
 
   const handleSelectFrequency = (frequency) => {
     setSelectedFrequency(frequency);
@@ -21,17 +21,18 @@ const WaterEventModal = ({ isOpen, onRequestClose, onSelectWateringFrequency }) 
       isOpen={isOpen}
       onRequestClose={onRequestClose}
       className="relative w-full max-w-lg h-auto mx-auto p-6 bg-white rounded-lg shadow-xl"
-      overlayClassName="fixed inset-0 bg-gray-500 bg-opacity-75"
+      overlayClassName="fixed inset-0 bg-gray-500 bg-opacity-75  flex items-center justify-center"
       ariaHideApp={false}
+      shouldCloseOnOverlayClick={false}
     >
       <h2 className="text-xl font-semibold mb-6 text-center">물 주는 빈도를 선택하세요</h2>
-      <div className="flex flex-col gap-4">
+      <div className="flex  gap-4">
         {[1, 2, 3].map((frequency) => (
           <Button
             key={frequency}
             variant="outline-primary"
             onClick={() => handleSelectFrequency(frequency)}
-            className={`w-full py-3 rounded-lg border-2 ${
+            className={`w-full py-8 rounded-lg border-2 ${
               selectedFrequency === frequency ? 'border-blue-500 text-blue-500 bg-blue-100' : 'border-gray-300 text-gray-600 hover:bg-gray-100'
             }`}
           >

@@ -23,6 +23,7 @@ const DifficultyModal = ({ isOpen, onRequestClose, onSelectDifficulty, difficult
       className="relative w-full max-w-3xl mx-auto my-8 p-6 bg-white rounded-lg shadow-xl"
       overlayClassName="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center"
       ariaHideApp={false}
+      shouldCloseOnOverlayClick={false}
     >
       <h2 className="text-2xl font-semibold mb-8 text-center">난이도를 선택하세요</h2>
       <div className="flex justify-around gap-2 mb-6">
