@@ -15,7 +15,7 @@ const PlantCard = ({ img_path, name, fit }) => {
         <p className="text-gray-700 mb-4">
           적합도 {fit}%
         </p>
-        <button className="w-full bg-neutral-500 text-white py-2 rounded-lg hover:bg-green-600 focus:outline-none focus:ring-2
+        <button className="w-[50%] bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2
          focus:ring-green-600 focus:ring-opacity-50 font-bold">
           구매하기
         </button>

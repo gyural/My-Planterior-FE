@@ -40,11 +40,6 @@ function App() {
             <Route path="/recommand" element={<Recommend />} />
           </Routes>
         </main>
-        {!isRecommend && (
-          <div className="w-full">
-            <BottomNavBar />
-          </div>
-        )}
       </div>
       <LoginModal isOpen={showLoginModal} onRequestClose={handleCloseLoginModal} />
     </Router>
