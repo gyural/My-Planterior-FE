@@ -15,7 +15,7 @@ const Plant = ({handlePlantGrow}) => {
         />
       </div>
       {/* plantWrapper */}
-      <div className='w-full flex justify-start absolute top-0 left-0'>
+      <div className='w-full flex justify-start absolute top-0 left-0 h-3/5'>
         <img 
           src={`${process.env.PUBLIC_URL}/asset/growingPlant/growing-${growingState}.png`} 
           alt={`식물 성장 상태-${growingState}`}

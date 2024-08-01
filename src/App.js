@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { HashRouter as Router, Route, Routes } from 'react-router-dom';
+import { HashRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
 import {useRecoilValue, useSetRecoilState } from 'recoil';
 import MyPlant from './pages/MyPlant';
 import About from './pages/About';
@@ -20,23 +20,30 @@ function App() {
 
   useEffect(() => {
     if (!auth.isAuthenticated) {
+      console.log('login false!!!')
       // 현재 url에 token-query가 있는지 확인
       const urlParams = new URLSearchParams(window.location.search);
       const token = urlParams.get('token');
       if (token) {
         // 토큰이 있으면 인증을 시도하는 로직 추가 가능
+        setShowLoginModal(false);
+        
+        const url = new URL(window.location.href);
+        url.search = '';
+        window.history.replaceState({}, '', url);
         setAuth((prevState) => ({
           ...prevState,
           isAuthenticated: true
         }));
-        handleCloseLoginModal()
 
-        console.log('토큰 발견', token)
       } else {
         setShowLoginModal(true);
       }
+    }else{
+      setShowLoginModal(false)
+
     }
-  }, [auth]);
+  }, [auth.isAuthenticated, setAuth]);
 
   const handleCloseLoginModal = () => {
     setShowLoginModal(false);

@@ -117,7 +117,7 @@ const PlantGrowing = ({onComplete}) => {
     >
       {/*식물 */}
       {/* plant-Container */}
-      <div className='w-full h-[50vh] absolute bottom-0 left-0'>
+      <div className='w-full h-1/2 absolute bottom-0 left-0'>
       <Plant handlePlantGrow={handlePlantGrow}></Plant>
 
       </div>
