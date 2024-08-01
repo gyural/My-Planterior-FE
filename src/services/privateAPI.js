@@ -4,8 +4,8 @@ const submitRecommandPlant = async (user_data) => {
   
   try {
     const response = await instance.post('/send-data', JSON.stringify(user_data));
-    if (response && response.data) {
-      return response.data;
+    if (response && response.data.plants) {
+      return response.data.plants;
     } else {
       return false;
     }

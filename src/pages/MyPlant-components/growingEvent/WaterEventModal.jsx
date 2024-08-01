@@ -26,7 +26,7 @@ const WaterEventModal = ({ isOpen, onRequestClose, onSelectWateringFrequency }) 
       shouldCloseOnOverlayClick={false}
     >
       <h2 className="text-xl font-semibold mb-6 text-center">물 주는 빈도를 선택하세요</h2>
-      <div className="flex  gap-4">
+      <div className="flex gap-4">
         {[1, 2, 3].map((frequency) => (
           <Button
             key={frequency}
@@ -35,8 +35,12 @@ const WaterEventModal = ({ isOpen, onRequestClose, onSelectWateringFrequency }) 
             className={`w-full py-8 rounded-lg border-2 ${
               selectedFrequency === frequency ? 'border-blue-500 text-blue-500 bg-blue-100' : 'border-gray-300 text-gray-600 hover:bg-gray-100'
             }`}
+            style={{
+              backgroundColor: `${selectedFrequency === frequency ? '#0d6efd' : 'white'}`,
+            color: `${selectedFrequency === frequency ? 'white' : 'gray'}`,
+            }}
           >
-            {`한 달에 ${frequency}번`}
+            {`한 달에 ${frequency*3}번`}
           </Button>
         ))}
       </div>

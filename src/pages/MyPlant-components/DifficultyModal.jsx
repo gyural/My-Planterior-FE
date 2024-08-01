@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ReactModal from 'react-modal';
-import { Button, Image } from 'react-bootstrap';
+import { Button} from 'react-bootstrap';
 
 const DifficultyModal = ({ isOpen, onRequestClose, onSelectDifficulty, difficulties }) => {
   const [selectedDifficulty, setSelectedDifficulty] = useState('');
@@ -27,26 +27,47 @@ const DifficultyModal = ({ isOpen, onRequestClose, onSelectDifficulty, difficult
     >
       <h2 className="text-2xl font-semibold mb-8 text-center">난이도를 선택하세요</h2>
       <div className="flex justify-around gap-2 mb-6">
-        {difficulties?.map((difficulty) => (
-          <Button
-            key={difficulty.type}
-            variant="outline-primary"
-            onClick={() => handleSelectDifficulty(difficulty.type)}
-            className={`flex flex-col items-center p-2 rounded-lg border-2 transition ${
-              selectedDifficulty === difficulty.type
-                ? `border-${difficulty.color}-500 text-${difficulty.color}-500 bg-${difficulty.color}-100`
-                : 'border-gray-300 text-gray-600 hover:bg-gray-100'
-            }`}
-            style={{ width: '120px', height: '180px' }}
-          >
-            <Image
-              src={difficulty.image}
-              alt={difficulty.alt}
-              className="w-full h-16 mb-1"
-            />
-            <span className="text-lg font-medium">{difficulty.type}</span>
-          </Button>
-        ))}
+      {difficulties?.map((difficulty) => (
+        <button
+          key={difficulty.type}
+          onClick={() => handleSelectDifficulty(difficulty.type)}
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            padding: '8px',
+            borderRadius: '8px',
+            border: `2px solid ${selectedDifficulty === difficulty.type ? 'blue' : 'gray'}`,
+            backgroundColor: `${selectedDifficulty === difficulty.type ? '#0d6efd' : 'white'}`,
+            color: `${selectedDifficulty === difficulty.type ? 'white' : 'gray'}`,
+            width: '120px',
+            height: '180px',
+            transition: 'background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease',
+            cursor: 'pointer',
+          }}
+          onMouseEnter={(e) => {
+            if (selectedDifficulty !== difficulty.type) {
+              e.target.style.backgroundColor = 'lightgray';
+            }
+          }}
+          onMouseLeave={(e) => {
+            if (selectedDifficulty !== difficulty.type) {
+              e.target.style.backgroundColor = 'white';
+            }
+          }}
+        >
+          <img
+            src={difficulty.image}
+            alt={difficulty.alt}
+            style={{
+              width: '100%',
+              height: '64px', // Tailwind's 16
+              marginBottom: '4px', // Tailwind's 1
+            }}
+          />
+          <span style={{ fontSize: '18px', fontWeight: '500' }}>{difficulty.type}</span>
+        </button>
+      ))}
       </div>
       <div className="flex justify-center">
         <Button

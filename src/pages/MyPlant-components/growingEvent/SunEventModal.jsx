@@ -37,7 +37,11 @@ const SunEventModal = ({ isOpen, onRequestClose, onSelectSun, sunTypeData }) => 
                 ? `border-${sunItem.color}-500 text-${sunItem.color}-500 bg-${sunItem.color}-100`
                 : 'border-gray-300 text-gray-600 hover:bg-gray-100'
             }`}
-            style={{ width: '120px', height: '180px' }}
+            style={{
+              width: '120px', height: '180px', 
+              backgroundColor: `${selectedSun === sunItem.type ? '#0d6efd' : 'white'}`,
+              color: `${selectedSun === sunItem.type ? 'white' : 'gray'}`,
+            }}
           >
             <Image
               src={sunItem.image}

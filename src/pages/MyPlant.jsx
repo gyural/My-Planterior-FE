@@ -3,15 +3,17 @@ import ConfirmModal from './MyPlant-components/ConfirmModal';
 import DifficultyModal from './MyPlant-components/DifficultyModal';
 import PlantImageModal from './MyPlant-components/PlantImageModal';
 import { authState } from '../atoms/authAtom';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import plantImg from '../plantData/plantType';
 import plantDifficulties from '../plantData/plantDifficulty';
 import PlantGrowing from './MyPlant-components/PlantGrowing';
+import { growState } from '../atoms/growAtom';
 
 const MyPlant = () => {
   // auth-state
   const auth = useRecoilValue(authState);
-
+  // grow-state
+  const [grow, setGrowState] = useRecoilState(growState)
   // Complete Modal
   const [completeModal, setCompleteModal] = useState(false);
   const handleCompleteClose = () => setCompleteModal(false);
@@ -53,6 +55,10 @@ const MyPlant = () => {
         difficulties={plantDifficulties}
         onSelectDifficulty={(selectedDifficulty) => {
           setDifficulty(selectedDifficulty);
+          setGrowState((prevState) => ({
+            ...prevState,
+            level: selectedDifficulty === '쉬움' ? 100 : selectedDifficulty === '보통' ? 200 : selectedDifficulty === '어려움' ? 300 : prevState.level
+          }));
           handleDifficultyClose();
         }} 
       />
@@ -62,7 +68,16 @@ const MyPlant = () => {
         onRequestClose={handlePlantTypeClose}
         onSelectImage={(selectedPlantType) => {
           setPlantType(plantImg[selectedPlantType]);
+          const type = plantImg[selectedPlantType].type
           handlePlantTypeClose();
+          setGrowState((prevState) => ({
+            ...prevState,
+            purpose: type === '잎식물' ? 10 : 
+            type === '꽃보기식물' ? 20 : 
+            type === '열매보기식물' ? 50 : 
+            type === '잎, 꽃보기 식물' ? 30 : 
+            type === '선인장 다육식물' ? 40 :prevState.purpose
+          }));
         }}
         plants={plantImg}
       />

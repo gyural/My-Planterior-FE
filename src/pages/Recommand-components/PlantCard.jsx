@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PlantCard = ({ img_path, name, fit }) => {
+const PlantCard = ({ img_path, name, fit, buylink }) => {
   return (
     <div className="w-[100%] mx-auto my-4 bg-white shadow-md rounded-lg overflow-hidden">
       <div className="w-full aspect-w-1 aspect-h-1 flex justify-center items-center bg-gray-100">
@@ -18,6 +18,7 @@ const PlantCard = ({ img_path, name, fit }) => {
         <button className="w-[50%] bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2
          focus:ring-green-600 focus:ring-opacity-50 font-bold">
           구매하기
+          <a href={buylink}></a>
         </button>
       </div>
     </div>

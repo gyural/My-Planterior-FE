@@ -6,8 +6,12 @@ import SunEventModal from './growingEvent/SunEventModal';
 import TemperatureModal from './growingEvent/TeperatureModal';
 import SunData from '../../plantData/SunData'
 import Weather from './Weather';
+import { growState } from '../..//atoms/growAtom';
+import { useRecoilState } from 'recoil';
 
 const PlantGrowing = ({onComplete}) => {
+  // growing-state
+  const [grow, setGrowState] = useRecoilState(growState)
   // 비오는 상태
   const [isRain, setIsRain] = useState(false);
   // 물 레벨 모달
@@ -38,16 +42,28 @@ const PlantGrowing = ({onComplete}) => {
   const closeTemperatureMdal = () =>{
     setisTemperatureModalOpen(false)
     //  온도 설정 애니매이션
-
+    
     // 물 충전
     setCurrentWater(waterLevel)
   }
   const handleWaterLever = (value) =>{
     setwaterLevel(value)
     setCurrentWater(value)
+    setGrowState((prevState) => ({
+      ...prevState,
+      water_need: value === 1 ? 10 : 
+      value === 2 ? 20 : 
+      value === 3 ? 30 :prevState.level
+    }));
   }
   const handleSunLevel = (value) =>{
     setsunlevel(value)
+    setGrowState((prevState) => ({
+      ...prevState,
+      sunright: value === 1 ? 10 : 
+      value === 2 ? 20 : 
+      value === 3 ? 30 :prevState.level
+    }));
   }
   const handleWateringClick = () => {
     if (!isRain) {
@@ -89,13 +105,16 @@ const PlantGrowing = ({onComplete}) => {
   return (
     <div
       className={`w-full h-screen bg-cover bg-center relative ${isRain ? 'bg-blue-100' : ''}`}
-      style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/asset/plantPlace/bed-room.png)` }}
+      style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/asset/plantPlace/bedroom-bg.png)` }}
     >
+      {/*식물 */}
+      {/* <Plant></Plant> */}
+      
       {/* Watering Button */}
       <button
         onClick={handleWateringClick}
         className={`absolute top-4 left-4 p-2 text-white rounded-full focus:outline-none ${
-          isRain ? 'bg-blue-600' : 'bg-neutral-400  '
+          isRain ? 'bg-blue-600' : 'bg-neutral-400'
         }`}
       >
         <Icon className="w-8 h-8" icon="iconoir:watering-soil" />
@@ -105,7 +124,10 @@ const PlantGrowing = ({onComplete}) => {
       {/* WaterEventModal */}
       <WaterEventModal isOpen={WaterEventModalOpen} 
       onRequestClose={closeWaterModal} 
-      onSelectWateringFrequency={handleWaterLever}></WaterEventModal>
+      onSelectWateringFrequency={handleWaterLever}>
+
+      </WaterEventModal>
+
 
       {/* SunEventModal */}
       <SunEventModal 
@@ -120,7 +142,6 @@ const PlantGrowing = ({onComplete}) => {
         onRequestClose={closeTemperatureMdal}
         onSelectTemperature={setTemperatureLevel}
       >
-
       </TemperatureModal>
       {/* WeatherIconContainer */}
       <div className='absolute top-4 right-4'>
