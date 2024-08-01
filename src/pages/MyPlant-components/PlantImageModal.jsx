@@ -3,14 +3,14 @@ import ReactModal from 'react-modal';
 import { Button, Image } from 'react-bootstrap';
 
 const PlantImageModal = ({ isOpen, onRequestClose, onSelectImage, plants }) => {
-  const [selectedImage, setSelectedImage] = useState('');
+  const [selectedImage, setSelectedImage] = useState(null);
 
   const handleSelectImage = (image) => {
     setSelectedImage(image);
   };
 
   const handleConfirm = () => {
-    if (selectedImage) {
+    if (selectedImage !== null) {
       onSelectImage(selectedImage);
       onRequestClose(); // Close the modal after selecting image
     }
@@ -21,24 +21,39 @@ const PlantImageModal = ({ isOpen, onRequestClose, onSelectImage, plants }) => {
       isOpen={isOpen}
       onRequestClose={onRequestClose}
       className="relative w-full max-w-2xl h-[80%] mx-auto my-8 p-6 bg-white rounded-lg shadow-xl overflow-auto"
-      overlayClassName="fixed inset-0 bg-gray-500 bg-opacity-75"
+      overlayClassName="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center"
       ariaHideApp={false}
     >
-      <h2 className="text-xl font-semibold mb-6 text-center text-pink-600">이미지를 선택하세요</h2>
+      <h2 className="text-xl mb-6 text-center font-bold">이미지를 선택하세요</h2>
       <div className="grid grid-cols-3 gap-4">
         {plants.map((plant, index) => (
-          <Button
+          <button
             key={index}
             variant="outline-primary"
             onClick={() => handleSelectImage(index)}
-            className={`w-full h-32 flex items-center justify-center rounded-lg border-2 ${selectedImage === plant.src ? 'border-blue-500 bg-blue-100' : 'border-gray-300 text-gray-600 hover:bg-gray-100'}`}
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-around',
+              alignItems: 'center',
+              padding: '8px',
+              borderRadius: '8px',
+              border: `2px solid ${selectedImage === index ? 'blue' : 'gray'}`,
+              backgroundColor: `${selectedImage === index ? '#0d6efd' : 'white'}`,
+              color: `${selectedImage === index ? 'white' : 'gray'}`,
+              width: '130px',
+              height: '180px',
+              transition: 'background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease',
+              cursor: 'pointer',
+            }}
           >
             <Image 
               src={plant.src} 
               alt={plant.alt} 
               className="max-w-full max-h-full object-contain"
             />
-          </Button>
+            <span style={{ fontSize: '18px', fontWeight: '500' }}>{plant.type}</span>
+          </button>
         ))}
       </div>
       <div className="flex justify-center mt-6">

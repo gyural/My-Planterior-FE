@@ -4,7 +4,6 @@ import { useRecoilValue } from 'recoil';
 import MyPlant from './pages/MyPlant';
 import About from './pages/About';
 import Contact from './pages/Contact';
-import BottomNavBar from './components/BottomNavbar';
 import Header from './components/Header';
 import Recommend from './pages/Recommend';
 import LoginModal from './components/LoginModal';
