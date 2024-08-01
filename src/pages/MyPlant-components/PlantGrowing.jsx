@@ -8,6 +8,7 @@ import SunData from '../../plantData/SunData'
 import Weather from './Weather';
 import { growState } from '../..//atoms/growAtom';
 import { useRecoilState } from 'recoil';
+import Plant from './grwoing-object/Plant';
 
 const PlantGrowing = ({onComplete}) => {
   // growing-state
@@ -36,6 +37,7 @@ const PlantGrowing = ({onComplete}) => {
 
     // 햇빛 아이콘 visible
     setisWeatherIcon(true)
+    // 식물 2단계로 성장
     // 물 충전
     setCurrentWater(waterLevel)
   }
@@ -75,7 +77,13 @@ const PlantGrowing = ({onComplete}) => {
       setCurrentWater(currentWater-1)
     }
   };
-
+  // 식물 성장
+  const handlePlantGrow = (prev) =>{
+    // 식물 성장 애니매이션
+    setGrowState(prev)
+  }
+  // plant-growing-source
+  
   useEffect(() => {
     if(currentWater===0){
       if(isSunEventModalOpen===null){
@@ -108,7 +116,11 @@ const PlantGrowing = ({onComplete}) => {
       style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/asset/plantPlace/bedroom-bg.png)` }}
     >
       {/*식물 */}
-      {/* <Plant></Plant> */}
+      {/* plant-Container */}
+      <div className='w-full h-[50vh] absolute bottom-0 left-0'>
+      <Plant handlePlantGrow={handlePlantGrow}></Plant>
+
+      </div>
       
       {/* Watering Button */}
       <button

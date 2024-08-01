@@ -11,7 +11,7 @@ const RecommendPage = () => {
     const fetch_recomand_data = async () => {
       const res = await submitRecommandPlant(grow_state)
       if(res){
-        setrecommandData(res.plants)
+        setrecommandData(res)
       }
     }
     console.log(recommandData)

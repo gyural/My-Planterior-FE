@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PlantCard = ({ img_path, name, fit, buylink }) => {
+const PlantCard = ({key, img_path, name, fit, buylink }) => {
   return (
     <div className="w-[100%] mx-auto my-4 bg-white shadow-md rounded-lg overflow-hidden">
       <div className="w-full aspect-w-1 aspect-h-1 flex justify-center items-center bg-gray-100">
