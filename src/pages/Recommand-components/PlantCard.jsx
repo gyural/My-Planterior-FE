@@ -1,6 +1,16 @@
 import React from 'react';
+import { getProductURL } from '../../services/privateAPI';
 
-const PlantCard = ({key, img_path, name, fit, buylink }) => {
+const PlantCard = ({img_path, name, fit}) => {
+  const handleProductLink = async (product) => {
+    // GET product-link
+    const productUrl = await getProductURL(product)
+    if(productUrl){
+      window.open(productUrl, '_blank');
+    }else{
+      alert("상품이 등록되어있지 않습니다.")
+    }
+  }
   return (
     <div className="w-[100%] mx-auto my-4 bg-white shadow-md rounded-lg overflow-hidden">
       <div className="w-full aspect-w-1 aspect-h-1 flex justify-center items-center bg-gray-100">
@@ -16,9 +26,10 @@ const PlantCard = ({key, img_path, name, fit, buylink }) => {
           적합도 {fit}%
         </p>
         <button className="w-[50%] bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2
-         focus:ring-green-600 focus:ring-opacity-50 font-bold">
+         focus:ring-green-600 focus:ring-opacity-50 font-bold"
+         onClick={()=>{handleProductLink(name)}}
+         >
           구매하기
-          <a href={buylink}></a>
         </button>
       </div>
     </div>
