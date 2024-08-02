@@ -6,16 +6,7 @@ import { Button } from 'react-bootstrap';
 import { submitGoogle } from '../services/authAPI';
 
 const LoginModal = ({ isOpen, onRequestClose }) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
   const setAuth = useSetRecoilState(authState);
-
-  const handleLogin = () => {
-    // 로그인 로직을 여기에 추가합니다.
-    // 예시로 로그인 성공시 isAuthenticated를 true로 설정
-    setAuth({ isAuthenticated: true });
-    onRequestClose();
-  };
 
   return (
     <ReactModal
@@ -38,14 +29,16 @@ const LoginModal = ({ isOpen, onRequestClose }) => {
 
       {/* 카카오 로그인 버튼 */}
       <div className="w-full flex justify-center mb-4">
-        <button className="flex items-center h-12 w-full py-2 px-4 bg-[#FEE500] hover:bg-[#fee500cb] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#fee500cb] focus:ring-opacity-50">
-          <img
-            src={`${process.env.PUBLIC_URL}/asset/kakao-login-icon.png`}
-            alt="Kakao"
-            className="h-full mr-2"
-          />
-          <span className="text-black">카카오 로그인</span>
-        </button>
+      <button 
+        onClick={() => window.location.href = 'https://mpserver.shop/api/kakao/oauth/kakao/callback'}
+        className="flex items-center h-12 w-full py-2 px-4 bg-[#FEE500] hover:bg-[#fee500cb] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#fee500cb] focus:ring-opacity-50">
+        <img
+          src={`${process.env.PUBLIC_URL}/asset/kakao-login-icon.png`}
+          alt="Kakao"
+          className="h-full mr-2"
+        />
+        <span className="text-black">카카오 로그인</span>
+      </button>
       </div>
 
       {/* 구글 로그인 버튼 */}

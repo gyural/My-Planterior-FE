@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import submitRecommandPlant from '../services/privateAPI'
+import {submitRecommandPlant} from '../services/privateAPI'
 import PlantCard from './Recommand-components/PlantCard'
 import { growState } from '../atoms/growAtom'
 import { useRecoilValue } from 'recoil';
@@ -12,15 +12,14 @@ const RecommendPage = () => {
   useEffect(() => {
     const fetch_recomand_data = async () => {
       const res = await submitRecommandPlant(grow_state)
+      
       if(res){
         setrecommandData(res)
       }
     }
-    console.log(recommandData)
     
     fetch_recomand_data()
   }, [])
-  console.log(recommandData)
   return (
     <div className="w-full flex flex-col items-center px-4 py-4">
       <div className="bg-neutral-100 w-full max-w-3xl pt-10 px-4 rounded-lg shadow-md ">
@@ -37,7 +36,6 @@ const RecommendPage = () => {
               img_path={plant.imageSource[0]}
               name={plant.plantName}
               fit={plant.similarity_percentage}
-              // buylink={}
             />
           ))
         ) : (

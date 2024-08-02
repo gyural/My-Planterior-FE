@@ -31,4 +31,20 @@ const getGoogleUserData = async (token) => {
     return null;
   }
 };
-export { submitGoogle, getGoogleUserData };
+
+const getKakaoUserData = async (token) => {
+  try {
+    const response = await axios.get('https://kapi.kakao.com/v2/user/me', {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+    console.log(response.data)
+    return response.data;
+  } catch (error) {
+    console.error('API 호출 에러:', error);
+    return null;
+  }
+};
+
+export { submitGoogle, getGoogleUserData, getKakaoUserData };

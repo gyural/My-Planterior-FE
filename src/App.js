@@ -10,7 +10,7 @@ import LoginModal from './components/LoginModal';
 import { authState } from './atoms/authAtom';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { getGoogleUserData } from './services/authAPI';
+import { getGoogleUserData, getKakaoUserData } from './services/authAPI';
 
 function App() {
   const auth = useRecoilValue(authState); // 수정된 부분
@@ -22,11 +22,24 @@ function App() {
     const fetchUserData = async (token) =>{
       const userData = await getGoogleUserData(token)
       if(userData){
+        // google-user
         console.log('name', userData)
         setAuth((prevState) => ({
           ...prevState,
           name: userData.name
         }));
+      }else{
+        // kakako-user
+        const kakakoUserData = await getKakaoUserData(token)
+        if(kakakoUserData?.properties?.nickname){
+          setAuth((prevState) => ({
+            ...prevState,
+            name: kakakoUserData.properties.nickname
+          }));
+        }else{
+          // 유저 정보 얻기 실패
+          console.log('get User Data Fail')
+        }
       }
     }
     if (!auth.isAuthenticated) {
