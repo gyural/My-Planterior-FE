@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/My-Planterior-FE/static/css/main.0bafca66.css",
-    "main.js": "/My-Planterior-FE/static/js/main.80989c26.js",
-    "static/js/453.988822dd.chunk.js": "/My-Planterior-FE/static/js/453.988822dd.chunk.js",
+    "main.css": "/My-Planterior-FE/static/css/main.f818fd94.css",
+    "main.js": "/My-Planterior-FE/static/js/main.0d55c19f.js",
+    "static/js/453.5e5e7e27.chunk.js": "/My-Planterior-FE/static/js/453.5e5e7e27.chunk.js",
     "index.html": "/My-Planterior-FE/index.html",
-    "main.0bafca66.css.map": "/My-Planterior-FE/static/css/main.0bafca66.css.map",
-    "main.80989c26.js.map": "/My-Planterior-FE/static/js/main.80989c26.js.map",
-    "453.988822dd.chunk.js.map": "/My-Planterior-FE/static/js/453.988822dd.chunk.js.map"
+    "main.f818fd94.css.map": "/My-Planterior-FE/static/css/main.f818fd94.css.map",
+    "main.0d55c19f.js.map": "/My-Planterior-FE/static/js/main.0d55c19f.js.map",
+    "453.5e5e7e27.chunk.js.map": "/My-Planterior-FE/static/js/453.5e5e7e27.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.0bafca66.css",
-    "static/js/main.80989c26.js"
+    "static/css/main.f818fd94.css",
+    "static/js/main.0d55c19f.js"
   ]
 }
