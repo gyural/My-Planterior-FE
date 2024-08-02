@@ -53,7 +53,7 @@ const LoginModal = ({ isOpen, onRequestClose }) => {
             alt="Google"
             className="h-full mr-2"
           />
-          <span className="text-gray-700">구글로 로그인</span>
+          <span className="text-gray-700">구글 로그인(IOS만 가능)</span>
         </button>
       </div>
       

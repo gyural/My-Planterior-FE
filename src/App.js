@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { HashRouter as Router, Route, Routes} from 'react-router-dom';
 import {useRecoilValue, useSetRecoilState } from 'recoil';
 import MyPlant from './pages/MyPlant';
-import About from './pages/About';
-import Contact from './pages/Contact';
 import Header from './components/Header';
 import Recommend from './pages/Recommend';
 import LoginModal from './components/LoginModal';
@@ -82,8 +80,6 @@ function App() {
         <main className="main-content flex-grow flex justify-center items-center">
           <Routes>
             <Route path="/" element={<MyPlant />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
             <Route path="/recommand" element={<Recommend />} />
           </Routes>
         </main>

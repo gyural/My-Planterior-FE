@@ -7,7 +7,7 @@ const Header = () => {
         className="w-[56px] h-[56px] bg-no-repeat bg-center bg-contain"
         style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/asset/logo.png)` }}
       ></div>
-      <span className="ml-4 text-2xl font-bold text-[#3E6606]">MyPle</span>
+      <span className="ml-4 text-2xl font-bold text-[#3E6606]">마이플</span>
     </div>
   );
 }
