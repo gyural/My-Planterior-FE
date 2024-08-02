@@ -4,18 +4,12 @@ const submitGoogle = async () => {
   try {
     const response = await axios.get('https://mpserver.shop/');
     if (response) {
-      console.log(response.data);
-      // 새로운 창 열기
-      const newWindow = window.open("", "_blank");
+      // HTML 문서를 현재 창에서 열기
+      document.open();
+      document.write(response.data);
+      document.close();
       // 새 창이 열렸는지 확인
-      if (newWindow) {
-        // HTML 문서를 새 창에 작성
-        newWindow.document.write(response.data);
-      } else {
-        console.error("새 창을 열 수 없습니다.");
-      }
-      return response;
-    } else {
+      }else {
       return false;
     }
   } catch (error) {
@@ -24,4 +18,17 @@ const submitGoogle = async () => {
   }
 };
 
-export { submitGoogle };
+const getGoogleUserData = async (token) => {
+  try {
+    const response = await axios.get('https://www.googleapis.com/oauth2/v2/userinfo', {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+    return response.data;
+  } catch (error) {
+    console.error('API 호출 에러:', error);
+    return null;
+  }
+};
+export { submitGoogle, getGoogleUserData };
