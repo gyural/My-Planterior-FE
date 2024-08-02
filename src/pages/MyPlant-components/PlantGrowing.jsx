@@ -8,10 +8,14 @@ import SunData from '../../plantData/SunData'
 import Weather from './Weather';
 import { growState } from '../..//atoms/growAtom';
 import { useRecoilState } from 'recoil';
+import Plant from './grwoing-object/Plant';
+import './animation.css'
 
 const PlantGrowing = ({onComplete}) => {
-  // growing-state
+  // 제출용growing-state
   const [grow, setGrowState] = useRecoilState(growState)
+  // 식물 성장 상태
+  const [currentGrow, setCurrentGrow] =useState(1)
   // 비오는 상태
   const [isRain, setIsRain] = useState(false);
   // 물 레벨 모달
@@ -36,6 +40,8 @@ const PlantGrowing = ({onComplete}) => {
 
     // 햇빛 아이콘 visible
     setisWeatherIcon(true)
+    // 식물 2단계로 성장
+    handlePlantGrow(currentGrow)
     // 물 충전
     setCurrentWater(waterLevel)
   }
@@ -43,6 +49,8 @@ const PlantGrowing = ({onComplete}) => {
     setisTemperatureModalOpen(false)
     //  온도 설정 애니매이션
     
+    // 식물 3단계로 성장
+    handlePlantGrow(currentGrow)
     // 물 충전
     setCurrentWater(waterLevel)
   }
@@ -75,7 +83,13 @@ const PlantGrowing = ({onComplete}) => {
       setCurrentWater(currentWater-1)
     }
   };
-
+  // 식물 성장
+  const handlePlantGrow = (prev) =>{
+    // 식물 성장 애니매이션
+    setCurrentGrow(prev+1)
+  }
+  // plant-growing-source
+  
   useEffect(() => {
     if(currentWater===0){
       if(isSunEventModalOpen===null){
@@ -94,12 +108,13 @@ const PlantGrowing = ({onComplete}) => {
         // 식물 최종 성장
 
         // 식물 추천 연결 모달 생성
-        onComplete()
+        setTimeout(() => {
+          onComplete()
+
+        }, 3500); 
       }
       
     }
-    console.log('water', currentWater)
-    
   }, [currentWater])
   
   return (
@@ -108,13 +123,17 @@ const PlantGrowing = ({onComplete}) => {
       style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/asset/plantPlace/bedroom-bg.png)` }}
     >
       {/*식물 */}
-      {/* <Plant></Plant> */}
+      {/* plant-Container */}
+      <div className='w-full h-1/2 absolute bottom-0 left-0'>
+      <Plant currentGrow={currentGrow}></Plant>
+
+      </div>
       
       {/* Watering Button */}
       <button
         onClick={handleWateringClick}
         className={`absolute top-4 left-4 p-2 text-white rounded-full focus:outline-none ${
-          isRain ? 'bg-blue-600' : 'bg-neutral-400'
+          isRain ? 'bg-blue-600 rotate-animation' : 'bg-neutral-400 bounce-animation'
         }`}
       >
         <Icon className="w-8 h-8" icon="iconoir:watering-soil" />

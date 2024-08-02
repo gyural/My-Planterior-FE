@@ -3,6 +3,7 @@ import ReactModal from 'react-modal';
 import { useSetRecoilState } from 'recoil';
 import { authState } from '../atoms/authAtom';
 import { Button } from 'react-bootstrap';
+import { submitGoogle } from '../services/authAPI';
 
 const LoginModal = ({ isOpen, onRequestClose }) => {
   const [username, setUsername] = useState('');
@@ -49,7 +50,11 @@ const LoginModal = ({ isOpen, onRequestClose }) => {
 
       {/* 구글 로그인 버튼 */}
       <div className="w-full flex justify-center mb-4">
-        <button className="flex items-center h-12 w-full py-2 px-4 bg-white border border-gray-300 hover:bg-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-opacity-50">
+        <button 
+          className="flex items-center h-12 w-full py-2 px-4 bg-white border border-gray-300 hover:bg-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-opacity-50"
+          onClick={submitGoogle}
+          >
+          
           <img
             src={`${process.env.PUBLIC_URL}/asset/web_light_rd_na@4x.png`}
             alt="Google"
@@ -58,7 +63,7 @@ const LoginModal = ({ isOpen, onRequestClose }) => {
           <span className="text-gray-700">구글로 로그인</span>
         </button>
       </div>
-
+      
     </ReactModal>
   );
 };

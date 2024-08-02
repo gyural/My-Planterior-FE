@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { HashRouter as Router, Route, Routes } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
+import { HashRouter as Router, Route, Routes} from 'react-router-dom';
+import {useRecoilValue, useSetRecoilState } from 'recoil';
 import MyPlant from './pages/MyPlant';
 import About from './pages/About';
 import Contact from './pages/Contact';
@@ -10,17 +10,52 @@ import LoginModal from './components/LoginModal';
 import { authState } from './atoms/authAtom';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { getGoogleUserData } from './services/authAPI';
 
 function App() {
-  const [isRecommend, setIsRecommend] = useState(false);
-  const auth = useRecoilValue(authState);
+  const auth = useRecoilValue(authState); // 수정된 부분
+  const setAuth = useSetRecoilState(authState); // 수정된 부분
+
   const [showLoginModal, setShowLoginModal] = useState(false);
 
   useEffect(() => {
-    if (!auth.isAuthenticated) {
-      setShowLoginModal(true);
+    const fetchUserData = async (token) =>{
+      const userData = await getGoogleUserData(token)
+      if(userData){
+        console.log('name', userData)
+        setAuth((prevState) => ({
+          ...prevState,
+          name: userData.name
+        }));
+      }
     }
-  }, [auth]);
+    if (!auth.isAuthenticated) {
+      // 현재 url에 token-query가 있는지 확인
+      const urlParams = new URLSearchParams(window.location.search);
+      const token = urlParams.get('token');
+      if (token) {
+        // 토큰이 있으면 인증을 시도하는 로직 추가 가능
+        setShowLoginModal(false);
+        // token hide
+        const url = new URL(window.location.href);
+        url.search = '';
+        window.history.replaceState({}, '', url);
+        // getGoogleUserName
+        fetchUserData(token)
+        
+        setAuth((prevState) => ({
+          ...prevState,
+          isAuthenticated: true
+        }));
+
+      } else {
+        setShowLoginModal(true);
+      }
+    }else{
+      setShowLoginModal(false)
+
+    }
+  }, [auth.isAuthenticated, setAuth]);
 
   const handleCloseLoginModal = () => {
     setShowLoginModal(false);

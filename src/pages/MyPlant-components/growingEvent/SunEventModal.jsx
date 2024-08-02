@@ -20,7 +20,7 @@ const SunEventModal = ({ isOpen, onRequestClose, onSelectSun, sunTypeData }) => 
     <ReactModal
       isOpen={isOpen}
       onRequestClose={onRequestClose}
-      className="relative w-full max-w-3xl mx-auto my-8 p-6 bg-white rounded-lg shadow-xl"
+      className="relative w-full max-w-3xl mx-auto my-8 p-6 bg-white rounded-lg shadow-xl z-10"
       overlayClassName="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center"
       ariaHideApp={false}
       shouldCloseOnOverlayClick={false}

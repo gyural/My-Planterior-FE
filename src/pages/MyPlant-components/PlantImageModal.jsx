@@ -41,8 +41,6 @@ const PlantImageModal = ({ isOpen, onRequestClose, onSelectImage, plants }) => {
               border: `2px solid ${selectedImage === index ? 'blue' : 'gray'}`,
               backgroundColor: `${selectedImage === index ? '#0d6efd' : 'white'}`,
               color: `${selectedImage === index ? 'white' : 'gray'}`,
-              width: '130px',
-              height: '180px',
               transition: 'background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease',
               cursor: 'pointer',
             }}
