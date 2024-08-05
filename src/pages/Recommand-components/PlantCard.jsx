@@ -6,7 +6,10 @@ const PlantCard = ({img_path, name, fit}) => {
     // GET product-link
     const productUrl = await getProductURL(product)
     if(productUrl){
-      window.open(productUrl, '_blank');
+      const newWindow = window.open(productUrl, '_blank');
+      if (newWindow === null || !newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
+        alert('팝업이 차단되었습니다. 팝업 차단을 해제해주세요.');
+      }
     }else{
       alert("상품이 등록되어있지 않습니다.")
     }
