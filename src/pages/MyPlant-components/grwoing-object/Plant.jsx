@@ -1,17 +1,17 @@
 import React, {useEffect, useState} from 'react'
 import plantBottomBtn from './plantBottomBtn'
 import '../animation.css'
-import { getKakaoUserDataTest } from '../../../services/authAPI'
+import Tooltip from './Toolkit'
 const Plant = ({currentGrow, isRain, handleWateringClick}) => {
-  useEffect(() => {
-    const fetchTest = async () =>{
-      await getKakaoUserDataTest()
-    }
-  
-    fetchTest()
-  }, [])
-  
-  // 1 ~ 3 단계까지 성장
+  // 메시지 목록
+  const messages = [
+    '너가 날 좋아했으면 좋겠어',
+    '새로운 메시지가 왔어요!',
+    '이것은 테스트 메시지입니다.',
+    '저는 메시지입니다!',
+  ];
+
+
   return (
     <>
       {/* Bottom Buttons */}
@@ -55,10 +55,13 @@ const Plant = ({currentGrow, isRain, handleWateringClick}) => {
       {/* plantWrapper */}
       <div className={`w-full ${currentGrow === 3 ? 'h-[120%]' : 'h-full'} absolute bottom-1/3 left-0`}>
         <div className='w-full h-full flex flex-col items-center justify-center'>
-          <div className="relative bg-white p-4 rounded-lg shadow-lg mb-4">
-            <div className="absolute top-full left-1/4 transform -translate-x-1/2 w-0 h-0 border-t-[10px] border-t-white border-x-[10px] border-x-transparent"></div>
-            <div className='font-semibold'>너가 날 좋아했으면 좋겠어</div>
-          </div>
+        <div className="p-6">
+        <Tooltip
+          arrowPosition="bottom"
+          className="mb-4"
+          messages={messages}
+        />
+        </div>
           <img 
             src={`${process.env.PUBLIC_URL}/asset/growingPlant/newGrowing/growing-${currentGrow}.png`} 
             alt={`식물 성장 상태-${currentGrow}`}
