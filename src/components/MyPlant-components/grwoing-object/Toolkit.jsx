@@ -1,16 +1,19 @@
-// Tooltip.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const Tooltip = ({ msgIndex, className, arrowPosition, messages }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
 
-  console.log(msgIndex)
+  // msgIndex가 바뀔때 마다 애니메이션 트리거
+  useEffect(() => {
+    setIsOpen(true);
+    const timer = setTimeout(() => {
+      setIsOpen(false);
+    }, 300); // 애니메이션 지속 시간과 일치하게 설정
+    return () => clearTimeout(timer);
+  }, [msgIndex]);
 
   return (
-    <div
-      className={`relative ${className}`}
-    >
+    <div className={`relative ${className}`}>
       {/* 화살표 */}
       {arrowPosition === 'bottom' && (
         <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-t-[10px] border-t-white border-x-[10px] border-x-transparent"></div>

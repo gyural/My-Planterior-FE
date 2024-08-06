@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import ConfirmModal from './MyPlant-components/ConfirmModal';
-import DifficultyModal from './MyPlant-components/DifficultyModal';
-import PlantImageModal from './MyPlant-components/PlantImageModal';
+import ConfirmModal from '../components/MyPlant-components/ConfirmModal';
+import DifficultyModal from '../components/MyPlant-components/DifficultyModal';
+import PlantImageModal from '../components/MyPlant-components/PlantImageModal';
 import { authState } from '../atoms/authAtom';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import plantImg from '../plantData/plantType';
 import plantDifficulties from '../plantData/plantDifficulty';
-import PlantGrowing from './MyPlant-components/PlantGrowing';
+import PlantGrowing from '../components/MyPlant-components/PlantGrowing';
 import { growState } from '../atoms/growAtom';
 
 const MyPlant = () => {

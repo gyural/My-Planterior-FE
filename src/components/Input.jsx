@@ -5,20 +5,14 @@ const Input = ({
   label,
   type="text",
   disabled,
-  // formatPrice,
-  // register,
-  // required,
-  // errors
+  
 }) => {
   return (
     <div className='relative w-full'>
-      {/* {formatPrice &&
-        <span className='absolute text-neutral-700 top-5 left-2'>₩</span>
-      } */}
+      
       <input 
         id={id}
         disabled={disabled}
-        // {...register(id, {required})}
         type={type}
         className={`
           w-full

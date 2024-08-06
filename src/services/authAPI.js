@@ -48,8 +48,6 @@ const getKakaoUserData = async (token) => {
 };
 
 const getKakaoUserDataTest = async () => {
-  const token = 'bsXgA28pkDFSSDr2hCwJSClc3ZFpzaS0AAAAAQopyWAAAAGRIvbHWW1lzvpaqIEo'
-  const acctoken = '5oLE48fhcUGSikQkXTONzKAVuLjHnMYqAAAAAQopyV8AAAGRIvnAzm1lzvpaqIEo'
   const idtoken = 'eyJraWQiOiI5ZjI1MmRhZGQ1ZjIzM2Y5M2QyZmE1MjhkMTJmZWEiLCJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9'
   try {
     const response = await axios.get('https://kapi.kakao.com/v2/user/me', {
