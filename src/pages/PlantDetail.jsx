@@ -121,7 +121,7 @@ const PlantDetail = () => {
         {/* textContainer */}
         <div className='flex w-full justify-around'>
           <p>{plant.lightDemand.slice(0,5)}</p>
-          <p>{plant.smellCodeName}</p>
+          <p>{`향기 ${plant.smellCodeName}`}</p>
         </div>
       </div>
     </div>
