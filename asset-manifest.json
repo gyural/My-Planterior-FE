@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/My-Planterior-FE/static/css/main.fcc69355.css",
-    "main.js": "/My-Planterior-FE/static/js/main.f59f254e.js",
+    "main.css": "/My-Planterior-FE/static/css/main.89a704c1.css",
+    "main.js": "/My-Planterior-FE/static/js/main.62881165.js",
     "static/js/453.988822dd.chunk.js": "/My-Planterior-FE/static/js/453.988822dd.chunk.js",
     "index.html": "/My-Planterior-FE/index.html",
-    "main.fcc69355.css.map": "/My-Planterior-FE/static/css/main.fcc69355.css.map",
-    "main.f59f254e.js.map": "/My-Planterior-FE/static/js/main.f59f254e.js.map",
+    "main.89a704c1.css.map": "/My-Planterior-FE/static/css/main.89a704c1.css.map",
+    "main.62881165.js.map": "/My-Planterior-FE/static/js/main.62881165.js.map",
     "453.988822dd.chunk.js.map": "/My-Planterior-FE/static/js/453.988822dd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.fcc69355.css",
-    "static/js/main.f59f254e.js"
+    "static/css/main.89a704c1.css",
+    "static/js/main.62881165.js"
   ]
 }
