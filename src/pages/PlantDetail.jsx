@@ -13,42 +13,55 @@ const PlantDetail = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { plant } = location.state || dummyPlantData; // Mock 데이터 사용
-
+  console.log(plant)
   // 향기 단계 변환 함수
   const getScentLevel = (scent) => {
     switch (scent) {
       case '없음':
         return 1;
-      case '거의없음':
-        return 1;
+      case '거의 없음':
+        return 2;
       case '약함':
-        return 2;
+        return 3;
       case '중간':
-        return 2;
+        return 4;
       case '강함':
+        return 5;
+      default:
+        return '정보 없음';
+    }
+  };
+  // 햇빛 단계 변환 함수
+  const getSunLevel = (sun) => {
+    switch (sun) {
+      case '낮은 광도(300~800 Lux)':
+        return 1;
+      case '중간 광도(800~1,500 Lux)':
+        return 2;
+      case '높은 광도(1,500~10,000 Lux)':
+        return 3;
+      default:
+        return '정보 없음';
+    }
+  };
+  // 온도 단계 변환 함수
+  const getTemperatureLevel = (temperature) => {
+    switch (temperature) {
+      case '"10~15℃"':
+        return 1;
+      case "16~20℃":
+        return 2;
+      case "21~25℃":
         return 3;
       default:
         return '정보 없음';
     }
   };
 
-  // 온도 단계 변환 함수
-  const getTemperatureLevel = (temperature) => {
-    if (temperature >= 10 && temperature <= 15) {
-      return 1;
-    } else if (temperature >= 16 && temperature <= 20) {
-      return 2;
-    } else if (temperature >= 21 && temperature <= 25) {
-      return 3;
-    } else {
-      return '정보 없음';
-    }
-  };
-
   if (!plant) {
     return <p>식물 데이터를 불러오는 중입니다...</p>;
   }
-
+  console.log(getTemperatureLevel(plant.smellCodeName))
   return (
     <div
       className="container mx-auto p-4 relative flex flex-col items-start"
@@ -71,20 +84,46 @@ const PlantDetail = () => {
         {/* 하단 뾰족이 */}
         <div className="absolute bottom-[-20px] left-1/2 transform -translate-x-1/2 w-0 h-0 border-t-[20px] border-t-white border-x-[20px] border-x-transparent"></div>
         <h1 className="text-2xl font-bold mb-4">{plant.plantName}</h1>
-        <p className="text-left mb-2">온도 요구량: {getTemperatureLevel(plant.temperature)} 단계</p>
+        <p className="text-left mb-2">온도 요구량</p>
         <img
           src={`${process.env.PUBLIC_URL}/asset/Guages/temperature-${getTemperatureLevel(plant.temperature)}.png`}
           alt={`온도 ${getTemperatureLevel(plant.temperature)}`}
           className="w-full mb-4"
         />
-        <p className="text-left mb-2">물 요구량: {plant.similarity_percentage}%</p>
+        <p className="text-left mb-2">물 요구량</p>
         <img
           src={`${process.env.PUBLIC_URL}/asset/Guages/water-1.png`}
           alt={`물 1`}
           className="w-full mb-4"
         />
-        <p className="text-left mb-2">향기 단계: {getScentLevel(plant.smellCodeName)}</p>
-        <p className="text-left mb-2">햇빛 요구량: {plant.similarity_percentage}%</p>
+        <p className="text-left mb-2">향기 단계: {plant.smellCodeName}</p>
+        {/* 향기 햇빛 Container */}
+        <div className='flex gap-4'>
+          {/* sun container */}
+          <div className='w-1/2 justify-center items-center flex-col'>
+          <img 
+            src={`${process.env.PUBLIC_URL}/asset/SunType/sunlevel-${getSunLevel(plant.lightDemand)}.png`} 
+            alt={`향기-${getSunLevel(plant.lightDemand)}`}
+            className='w-full'
+            />
+          </div>
+          
+          {/* scent container */}
+          <div className='w-1/2 flex justify-center items-center flex-col'>
+            <img 
+              src={`${process.env.PUBLIC_URL}/asset/Guages/scent-${getScentLevel(plant.smellCodeName)}.png`} 
+              alt={`향기-${getScentLevel(plant.smellCodeName)}`}
+              className='w-full'
+              />
+          </div>
+
+          
+        </div>
+        {/* textContainer */}
+        <div className='flex w-full justify-around'>
+          <p>{plant.lightDemand.slice(0,5)}</p>
+          <p>{plant.smellCodeName}</p>
+        </div>
       </div>
     </div>
   );

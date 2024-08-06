@@ -4,7 +4,6 @@ import React from 'react';
 const FitIndex = ({ fit }) => {
   // fit 값을 100% 기준에서 5점 만점으로 변환
   const fitScore = (fit / 100) * 5;
-  console.log(fitScore)
 
   const getPratial = (idx, fit) => {
     const getFloat = (idx+1) - fit 
