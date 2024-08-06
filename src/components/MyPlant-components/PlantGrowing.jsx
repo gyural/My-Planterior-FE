@@ -17,6 +17,7 @@ const PlantGrowing = ({onComplete}) => {
   const [currentGrow, setCurrentGrow] =useState(1)
   // 비오는 상태
   const [isRain, setIsRain] = useState(false);
+  const rainTime= 3000
   // 메세지 변경
   const [msgIndex, setMsgIndex] = useState(0)
   // 물 레벨 모달
@@ -30,7 +31,15 @@ const PlantGrowing = ({onComplete}) => {
   // temperatureModal
   const [temperatureLevel, setTemperatureLevel] = useState(null)
   const [isTemperatureModalOpen, setisTemperatureModalOpen] = useState(null)
-  const [temperature, settemperature] = useState(null)
+  // 식물 표정
+  const [plantEmotion, setplantEmotion] = useState(0)
+  
+  // plant-emotion-array
+  const emotions = [
+    'happy',
+    'sad',
+    'angry'
+  ]
   // clse Modal Handling
   const closeWaterModal = () =>{
     setWaterEventModalOpen(false)
@@ -79,7 +88,7 @@ const PlantGrowing = ({onComplete}) => {
       setIsRain(true);
       setTimeout(() => {
         setIsRain(false);
-      }, 3000); // 3초 후에 false로 변경
+      }, rainTime); // 3초 후에 false로 변경
 
       setCurrentWater(currentWater-1)
     }
@@ -97,14 +106,14 @@ const PlantGrowing = ({onComplete}) => {
         // sunModalOpen
         setTimeout(() => {
           setisSunEventModalOpen(true)
-        }, 3500); // 3초 후에 false로 변경
+        }, rainTime+500); // 3초 후에 false로 변경
       }else if(isTemperatureModalOpen===null){
         // 식물 성장 애니매이션 
 
         // 온도 선택 모달 open
         setTimeout(() => {
           setisTemperatureModalOpen(true)
-        }, 3500); 
+        }, rainTime + 500); 
       }else{
         // 식물 최종 성장
 
@@ -133,12 +142,15 @@ const PlantGrowing = ({onComplete}) => {
       </div>
       {/*식물 */}
       {/* plant-Container */}
-      <div className='w-full h-1/2 absolute bottom-0 left-0' onClick={() => setMsgIndex((prevIndex) => (prevIndex + 1) % 4)}>
+      <div className='w-full h-1/2 absolute bottom-0 left-0'>
       <Plant 
         handleWateringClick={handleWateringClick}
         isRain={isRain} 
         currentGrow={currentGrow}
-        msgIndex={msgIndex}>
+        msgIndex={msgIndex}
+        plantEmotion={emotions[plantEmotion]}
+        onClickHandler={() => setMsgIndex((prevIndex) => (prevIndex + 1) % 4)}
+        >
       </Plant>
 
       </div>

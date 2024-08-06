@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { HashRouter as Router, Route, Routes} from 'react-router-dom';
 import {useRecoilValue, useSetRecoilState } from 'recoil';
 import MyPlant from './pages/MyPlant';
-import Header from './components/Header';
+// import Header from './components/Header';
 import Recommend from './pages/Recommend';
 import LoginModal from './components/LoginModal';
 import { authState } from './atoms/authAtom';
@@ -83,7 +83,6 @@ function App() {
             <Route path="/" element={<MyPlant />} />
             <Route path="/recommand" element={<Recommend />} />
             <Route path="/recommand/detail" element={<PlantDetail />} />
-            
           </Routes>
         </main>
       </div>

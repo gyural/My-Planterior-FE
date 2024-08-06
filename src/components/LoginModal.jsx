@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import ReactModal from 'react-modal';
 import { useSetRecoilState } from 'recoil';
 import { authState } from '../atoms/authAtom';
-import { Button } from 'react-bootstrap';
 import { submitGoogle } from '../services/authAPI';
 
 const LoginModal = ({ isOpen, onRequestClose }) => {

@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import {submitRecommandPlant} from '../services/privateAPI'
-import PlantCard from './Recommand-components/PlantCard'
+import PlantCard from '../components/Recommand-components/PlantCard'
 import { growState } from '../atoms/growAtom'
 import { useRecoilValue } from 'recoil';
 import { authState } from '../atoms/authAtom';
-import { useNavigate } from 'react-router-dom';
 
 const RecommendPage = () => {
   const grow_state = useRecoilValue(growState);
