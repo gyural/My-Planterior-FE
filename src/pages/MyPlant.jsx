@@ -10,6 +10,7 @@ import PlantGrowing from './MyPlant-components/PlantGrowing';
 import { growState } from '../atoms/growAtom';
 
 const MyPlant = () => {
+  const [height, setHeight] = useState(window.innerHeight);
   // auth-state
   const auth = useRecoilValue(authState);
   // grow-state
@@ -46,7 +47,7 @@ const MyPlant = () => {
   }, [auth.isAuthenticated, difficulty, plantType]);
 
   return (
-    <div className="w-full h-[100vh]" >
+    <div className="w-full" style={{ height: `${height}px` }} >
       <ConfirmModal show={completeModal} handleClose={handleCompleteClose} />
       {/* 난이도 모달 */}
       <DifficultyModal 
