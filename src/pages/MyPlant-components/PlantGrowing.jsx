@@ -118,7 +118,7 @@ const PlantGrowing = ({onComplete}) => {
   
   return (
     <div
-      className={`w-full h-full bg-cover bg-center relative ${isRain ? 'bg-blue-100' : ''}`}
+      className={`w-full h-[100vh] bg-cover bg-center relative ${isRain ? 'bg-blue-100' : ''}`}
       style={{ 
         backgroundImage: `url(${process.env.PUBLIC_URL}/asset/growingPlant/bedroom-bg-new.png)`,
         backgroundSize: 'cover'
