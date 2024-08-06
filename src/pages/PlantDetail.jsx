@@ -78,25 +78,24 @@ const PlantDetail = () => {
         &lt;
       </button>
       <div
-        className="relative p-6 bg-white border-2 border-black rounded-lg shadow-lg"
+        className="mb-52 relative p-6 bg-white border-2 border-black rounded-lg shadow-lg"
         style={{ maxWidth: '500px' }} // 최대 너비를 설정하여 컨테이너가 너무 넓어지지 않도록 합니다.
       >
         {/* 하단 뾰족이 */}
         <div className="absolute bottom-[-20px] left-1/2 transform -translate-x-1/2 w-0 h-0 border-t-[20px] border-t-white border-x-[20px] border-x-transparent"></div>
         <h1 className="text-2xl font-bold mb-4">{plant.plantName}</h1>
-        <p className="text-left mb-2">온도 요구량</p>
+        <h5 className="text-left mb-2">온도 요구량</h5>
         <img
-          src={`${process.env.PUBLIC_URL}/asset/Guages/temperature-${getTemperatureLevel(plant.temperature)}.png`}
+          src={`${process.env.PUBLIC_URL}/asset/Guages/temp-${getTemperatureLevel(plant.temperature)}.png`}
           alt={`온도 ${getTemperatureLevel(plant.temperature)}`}
           className="w-full mb-4"
         />
-        <p className="text-left mb-2">물 요구량</p>
+        <h5 className="text-left mb-2">물 요구량</h5>
         <img
           src={`${process.env.PUBLIC_URL}/asset/Guages/water-1.png`}
           alt={`물 1`}
           className="w-full mb-4"
         />
-        <p className="text-left mb-2">향기 단계: {plant.smellCodeName}</p>
         {/* 향기 햇빛 Container */}
         <div className='flex gap-4'>
           {/* sun container */}
