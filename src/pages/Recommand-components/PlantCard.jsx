@@ -1,7 +1,14 @@
 import React from 'react';
 import { getProductURL } from '../../services/privateAPI';
+import FitIndex from './FitIndex';
+import { useNavigate } from 'react-router-dom';
+const PlantCard = ({img_path, name, fit, plant}) => {
 
-const PlantCard = ({img_path, name, fit}) => {
+  const navigate = useNavigate()
+
+  const handleDetailClick = (plant) => {
+    navigate('/recommand/detail', { state: { plant } });
+  };
   const handleProductLink = async (product) => {
     // GET product-link
     const productUrl = await getProductURL(product)
@@ -23,17 +30,28 @@ const PlantCard = ({img_path, name, fit}) => {
           className="object-cover w-full h-full"
         />
       </div>
-      <div className="p-4">
-        <h3 className="text-lg font-bold mb-2">{name}</h3>
-        <p className="text-gray-700 mb-4">
-          적합도 {fit}%
+      <div className="p-3">
+        <h3 className="text-xl font-bold">{name}</h3>
+        <p className="text-gray-700 m-0">
+          적합도
         </p>
-        <button className="w-[50%] bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2
-         focus:ring-green-600 focus:ring-opacity-50 font-bold"
-         onClick={()=>{handleProductLink(name)}}
-         >
-          구매하기
-        </button>
+        <FitIndex fit={fit}></FitIndex>
+        {/* Button-Container */}
+        <div className='w-full flex gap-2'>
+          <button 
+            className="w-[50%] bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-opacity-50 font-bold"
+            onClick={() => {handleProductLink(name)}}
+          >
+            구매하기
+          </button>
+          <button 
+            className="w-[50%] bg-white text-green-600 py-2 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-opacity-50 font-bold shadow-md"
+            onClick={() => {handleDetailClick(plant)}}
+            style={{boxShadow: '0 -4px 6px rgba(0, 0, 0, 0.1)'}}
+          >
+            자세히 보기
+          </button>
+        </div>
       </div>
     </div>
   );

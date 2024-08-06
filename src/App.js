@@ -9,6 +9,7 @@ import { authState } from './atoms/authAtom';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { getGoogleUserData, getKakaoUserData } from './services/authAPI';
+import PlantDetail from './pages/PlantDetail';
 
 function App() {
   const auth = useRecoilValue(authState); // 수정된 부분
@@ -76,11 +77,13 @@ function App() {
     <Router>
       {/* Container */}
       <div className="flex flex-col justify-center items-center min-h-screen w-full">
-        <Header />
+        {/* <Header /> */}
         <main className="main-content flex-grow flex justify-center items-center">
           <Routes>
             <Route path="/" element={<MyPlant />} />
             <Route path="/recommand" element={<Recommend />} />
+            <Route path="/recommand/detail" element={<PlantDetail />} />
+            
           </Routes>
         </main>
       </div>

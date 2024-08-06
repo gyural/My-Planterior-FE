@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import Watering from './Watering';
-import { Icon } from '@iconify/react';
 import WaterEventModal from './growingEvent/WaterEventModal';
 import SunEventModal from './growingEvent/SunEventModal';
 import TemperatureModal from './growingEvent/TeperatureModal';
 import SunData from '../../plantData/SunData'
-import Weather from './Weather';
 import { growState } from '../..//atoms/growAtom';
 import { useRecoilState } from 'recoil';
 import Plant from './grwoing-object/Plant';
 import './animation.css'
+import GaugeBar from '../../components/GaugeBar';
 
 const PlantGrowing = ({onComplete}) => {
   // 제출용growing-state
@@ -119,25 +118,33 @@ const PlantGrowing = ({onComplete}) => {
   
   return (
     <div
-      className={`w-full h-screen bg-cover bg-center relative ${isRain ? 'bg-blue-100' : ''}`}
-      style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/asset/plantPlace/bedroom-bg.png)` }}
+      className={`w-full h-full bg-cover bg-center relative ${isRain ? 'bg-blue-100' : ''}`}
+      style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/asset/growingPlant/bedroom-bg-new.png)` }}
     >
+      <div className='w-full h-8 flex justify-center mx-auto absolute top-4'>
+        {/* 4칸으로 구분되는 게이지 바좀 만들어줘 */}
+        <GaugeBar currentGrow={currentGrow}></GaugeBar>
+      </div>
       {/*식물 */}
       {/* plant-Container */}
       <div className='w-full h-1/2 absolute bottom-0 left-0'>
-      <Plant currentGrow={currentGrow}></Plant>
+      <Plant 
+        handleWateringClick={handleWateringClick}
+        isRain={isRain} 
+        currentGrow={currentGrow}>
+      </Plant>
 
       </div>
       
       {/* Watering Button */}
-      <button
+      {/* <button
         onClick={handleWateringClick}
         className={`absolute top-4 left-4 p-2 text-white rounded-full focus:outline-none ${
           isRain ? 'bg-blue-600 rotate-animation' : 'bg-neutral-400 bounce-animation'
         }`}
       >
         <Icon className="w-8 h-8" icon="iconoir:watering-soil" />
-      </button>
+      </button> */}
 
       {isRain && <Watering />}
       {/* WaterEventModal */}
@@ -163,11 +170,11 @@ const PlantGrowing = ({onComplete}) => {
       >
       </TemperatureModal>
       {/* WeatherIconContainer */}
-      <div className='absolute top-4 right-4'>
+      {/* <div className='absolute top-4 right-4'>
         {isWeatherIcon &&
         <Weather sunlevel={sunlevel}></Weather>
         }
-      </div>
+      </div> */}
 
     </div>
 
