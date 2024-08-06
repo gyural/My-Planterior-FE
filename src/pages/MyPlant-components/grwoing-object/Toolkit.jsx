@@ -1,21 +1,15 @@
 // Tooltip.js
 import React, { useState } from 'react';
 
-const Tooltip = ({ messages, className, arrowPosition }) => {
+const Tooltip = ({ msgIndex, className, arrowPosition, messages }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
 
-  console.log(messages)
-  const handleClick = () => {
-    setIsOpen(!isOpen);
-    // 메시지 인덱스를 순환하여 변경
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % messages.length);
-  };
+  console.log(msgIndex)
 
   return (
     <div
       className={`relative ${className}`}
-      onClick={handleClick}
     >
       {/* 화살표 */}
       {arrowPosition === 'bottom' && (
@@ -28,7 +22,7 @@ const Tooltip = ({ messages, className, arrowPosition }) => {
       <div
         className={`bg-white p-4 rounded-lg shadow-lg transition-transform duration-300 ${isOpen ? 'scale-105' : 'scale-100'}`}
       >
-        {messages[currentIndex]}
+        {messages[msgIndex]}
       </div>
     </div>
   );

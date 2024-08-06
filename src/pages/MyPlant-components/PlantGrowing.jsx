@@ -17,6 +17,8 @@ const PlantGrowing = ({onComplete}) => {
   const [currentGrow, setCurrentGrow] =useState(1)
   // 비오는 상태
   const [isRain, setIsRain] = useState(false);
+  // 메세지 변경
+  const [msgIndex, setMsgIndex] = useState(0)
   // 물 레벨 모달
   const [waterLevel, setwaterLevel] = useState(null)
   const [WaterEventModalOpen, setWaterEventModalOpen] = useState(true)
@@ -131,11 +133,12 @@ const PlantGrowing = ({onComplete}) => {
       </div>
       {/*식물 */}
       {/* plant-Container */}
-      <div className='w-full h-1/2 absolute bottom-0 left-0'>
+      <div className='w-full h-1/2 absolute bottom-0 left-0' onClick={() => setMsgIndex((prevIndex) => (prevIndex + 1) % 4)}>
       <Plant 
         handleWateringClick={handleWateringClick}
         isRain={isRain} 
-        currentGrow={currentGrow}>
+        currentGrow={currentGrow}
+        msgIndex={msgIndex}>
       </Plant>
 
       </div>
