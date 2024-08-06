@@ -17,7 +17,7 @@ const PlantGrowing = ({onComplete}) => {
   const [currentGrow, setCurrentGrow] =useState(1)
   // 비오는 상태
   const [isRain, setIsRain] = useState(false);
-  const rainTime= 3000
+  const rainTime= 2000
   // 메세지 변경
   const [msgIndex, setMsgIndex] = useState(0)
   // 물 레벨 모달
@@ -32,14 +32,14 @@ const PlantGrowing = ({onComplete}) => {
   const [temperatureLevel, setTemperatureLevel] = useState(null)
   const [isTemperatureModalOpen, setisTemperatureModalOpen] = useState(null)
   // 식물 표정
-  const [plantEmotion, setplantEmotion] = useState(0)
+  const [plantEmotion, setplantEmotion] = useState('happy')
   
+  const handlePlantClick = () => {
+    const emotions = ['happy', 'wink', 'sad', 'upset'];
+    const randomEmotion = emotions[Math.floor(Math.random() * emotions.length)];
+    setplantEmotion(randomEmotion);
+  };
   // plant-emotion-array
-  const emotions = [
-    'happy',
-    'sad',
-    'angry'
-  ]
   // clse Modal Handling
   const closeWaterModal = () =>{
     setWaterEventModalOpen(false)
@@ -148,8 +148,8 @@ const PlantGrowing = ({onComplete}) => {
         isRain={isRain} 
         currentGrow={currentGrow}
         msgIndex={msgIndex}
-        plantEmotion={emotions[plantEmotion]}
-        onClickHandler={() => setMsgIndex((prevIndex) => (prevIndex + 1) % 4)}
+        plantEmotion={plantEmotion}
+        onClickHandler={handlePlantClick}
         >
       </Plant>
 

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
-const Tooltip = ({ msgIndex, className, arrowPosition, messages }) => {
+const Tooltip = ({ msgIndex, className, arrowPosition, message }) => {
   const [isOpen, setIsOpen] = useState(false);
+  
 
   // msgIndex가 바뀔때 마다 애니메이션 트리거
   useEffect(() => {
@@ -25,7 +26,7 @@ const Tooltip = ({ msgIndex, className, arrowPosition, messages }) => {
       <div
         className={`bg-white p-4 rounded-lg shadow-lg transition-transform duration-300 ${isOpen ? 'scale-105' : 'scale-100'}`}
       >
-        {messages[msgIndex]}
+        {message}
       </div>
     </div>
   );
