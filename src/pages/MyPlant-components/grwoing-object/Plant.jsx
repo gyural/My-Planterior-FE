@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import plantBottomBtn from './plantBottomBtn'
 import '../animation.css'
 import Tooltip from './Toolkit'
-const Plant = ({currentGrow, isRain, handleWateringClick}) => {
+const Plant = ({currentGrow, isRain, handleWateringClick, msgIndex}) => {
   // 메시지 목록
   const messages = [
     '너가 날 좋아했으면 좋겠어',
@@ -59,6 +59,7 @@ const Plant = ({currentGrow, isRain, handleWateringClick}) => {
         <Tooltip
           arrowPosition="bottom"
           className="mb-4"
+          msgIndex={msgIndex}
           messages={messages}
         />
         </div>
