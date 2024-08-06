@@ -8,7 +8,9 @@ const Plant = ({
   isRain, 
   handleWateringClick, 
   plantEmotion,
-  onClickHandler
+  onClickHandler,
+  currentWater,
+  waterLevel
 }) => {
 
   // 메시지 목록
@@ -34,14 +36,17 @@ const Plant = ({
       {/* Bottom Buttons */}
       <div className='w-full absolute bottom-0 left-0 flex justify-start'
         >
-        <div className='w-full flex justify-around p-0 mb-4'>
+        <div className='w-full flex relative justify-around p-0 mb-4'>
           {/* Water-Button */}
+          
+
           <button
             onClick={handleWateringClick}
             className={
-              `${isRain ? 'bg-blue-600 rotate-animation' : 'bg-white bounce-animation'}
-              w-14 h-14 rounded-full flex justify-center items-center overflow-hidden`}
+              `${isRain ? '  bg-blue-600 rotate-animation' : 'bg-white bounce-animation'}
+              w-14 h-14 rounded-full relative flex justify-center items-center`}
             >
+              <h3 className='absolute -top-7 text-2xl w-full text-white'>{currentWater}/{waterLevel}</h3>
               <img 
                 src={`${process.env.PUBLIC_URL}/asset/growingPlant/plantBottomButton/water.png`} 
                 alt='Water' 
@@ -71,7 +76,7 @@ const Plant = ({
         </div>
       </div>
       {/* plantWrapper */}
-      <div className={`w-full ${currentGrow === 3 ? 'h-[140%]' : 'h-full'} absolute bottom-1/3 left-0`}
+      <div className={`w-full ${currentGrow === 3 ? 'h-[140%]' : 'h-full'} absolute bottom-1/2 left-0`}
         
       >
         <div className="w-full h-full flex flex-col items-center justify-center"
@@ -90,7 +95,9 @@ const Plant = ({
             alt={`식물 성장 상태-${currentGrow}`}
             loading="lazy"
             className={`
-            h-[350px] transition-transform duration-300 ${isAnimating ? 'scale-90' : ''} ${currentGrow === 3 ? 'w-3/4 h-[380px]' : 'w-1/2'} object-contain object-center`}
+             transition-transform duration-300
+              ${isAnimating ? 'scale-90' : ''} 
+              object-contain object-center`}
           />
         </div>
       </div>

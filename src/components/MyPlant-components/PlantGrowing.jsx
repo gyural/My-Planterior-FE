@@ -145,7 +145,9 @@ const PlantGrowing = ({onComplete}) => {
       <div className='w-full h-1/2 absolute bottom-0 left-0'>
       <Plant 
         handleWateringClick={handleWateringClick}
-        isRain={isRain} 
+        isRain={isRain}
+        currentWater={waterLevel-currentWater}
+        waterLevel={waterLevel}
         currentGrow={currentGrow}
         msgIndex={msgIndex}
         plantEmotion={plantEmotion}
