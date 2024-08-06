@@ -2,31 +2,33 @@ import React, {useEffect, useState} from 'react'
 import plantBottomBtn from './plantBottomBtn'
 import '../animation.css'
 import Tooltip from './Toolkit'
+import { emotionMessage } from '../message'
 const Plant = ({
   currentGrow, 
   isRain, 
   handleWateringClick, 
-  msgIndex,
   plantEmotion,
   onClickHandler
 }) => {
 
   // 메시지 목록
-  const messages = [
-    '너가 날 좋아했으면 좋겠어',
-    '새로운 메시지가 왔어요!',
-    '이것은 테스트 메시지입니다.',
-    '저는 메시지입니다!',
-  ];
+  const [messages, setmessage] = useState(emotionMessage[`grow${currentGrow}`].happy)
+  
+  const getRandomMessage = (messages) => {
+    // messages 배열 중에 하나를 랜덤으로 추출
+    const randomIndex = Math.floor(Math.random() * messages.length);
+    return messages[randomIndex];
+  };
   // plant apear Animation
   const [isAnimating, setIsAnimating] = useState(false);
   useEffect(() => {
     setIsAnimating(true);
     const timer = setTimeout(() => {
       setIsAnimating(false);
+      const meeeagesList = emotionMessage[`grow${currentGrow}`][`${plantEmotion}`]
+      setmessage(getRandomMessage(meeeagesList))
     }, 300); // 애니메이션 지속 시간과 일치하게 설정
-    return () => clearTimeout(timer);
-  }, [currentGrow, msgIndex]);
+  }, [currentGrow, plantEmotion]);
   return (
     <>
       {/* Bottom Buttons */}
@@ -69,24 +71,26 @@ const Plant = ({
         </div>
       </div>
       {/* plantWrapper */}
-      <div className={`w-full ${currentGrow === 3 ? 'h-[120%]' : 'h-full'} absolute bottom-1/3 left-0`}
-        onClick={onClickHandler}
+      <div className={`w-full ${currentGrow === 3 ? 'h-[140%]' : 'h-full'} absolute bottom-1/3 left-0`}
+        
       >
-        <div className="w-full h-full flex flex-col items-center justify-center">
+        <div className="w-full h-full flex flex-col items-center justify-center"
+          onClick={onClickHandler}
+        >
           <div className="p-6">
             <Tooltip
               arrowPosition="bottom"
               className="mb-4"
-              msgIndex={msgIndex}
-              messages={messages}
+              message={messages}
             />
           </div>
           {/* plantEmotion에 따라서 이미지 파일 변환 */}
           <img
-            src={`${process.env.PUBLIC_URL}/asset/growingPlant/newGrowing/growing-${currentGrow}.png`}
+            src={`${process.env.PUBLIC_URL}/asset/emotion/grow-${currentGrow}/${plantEmotion}.png`}
             alt={`식물 성장 상태-${currentGrow}`}
             loading="lazy"
-            className={`transition-transform duration-300 ${isAnimating ? 'scale-90' : ''} ${currentGrow === 3 ? 'w-3/4' : 'w-1/2'} object-contain object-center`}
+            className={`
+            h-[350px] transition-transform duration-300 ${isAnimating ? 'scale-90' : ''} ${currentGrow === 3 ? 'w-3/4 h-[380px]' : 'w-1/2'} object-contain object-center`}
           />
         </div>
       </div>
