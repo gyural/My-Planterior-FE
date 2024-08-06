@@ -119,7 +119,11 @@ const PlantGrowing = ({onComplete}) => {
   return (
     <div
       className={`w-full h-full bg-cover bg-center relative ${isRain ? 'bg-blue-100' : ''}`}
-      style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/asset/growingPlant/bedroom-bg-new.png)` }}
+      style={{ 
+        backgroundImage: `url(${process.env.PUBLIC_URL}/asset/growingPlant/bedroom-bg-new.png)`,
+        backgroundSize: 'cover'
+        
+      }}
     >
       <div className='w-full h-8 flex justify-center mx-auto absolute top-4'>
         {/* 4칸으로 구분되는 게이지 바좀 만들어줘 */}

@@ -46,7 +46,7 @@ const MyPlant = () => {
   }, [auth.isAuthenticated, difficulty, plantType]);
 
   return (
-    <div className="w-full h-full" >
+    <div className="w-full h-[100vh]" >
       <ConfirmModal show={completeModal} handleClose={handleCompleteClose} />
       {/* 난이도 모달 */}
       <DifficultyModal 
